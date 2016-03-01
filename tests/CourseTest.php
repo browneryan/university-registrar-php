@@ -22,8 +22,23 @@
 
             //Assert
             $this->assertEquals($name, $result);
-
         }
+
+		function testSetName()
+		{
+			//Arrange
+			$name = "HIST";
+			$number = 100;
+			$test_course = new Course($id = null, $name, $number);
+
+			//Act
+			$test_course->setName('BIO');
+			$result = $test_course->getName();
+
+			//Assert
+			$this->assertEquals('BIO', $result);
+		}
+
 	}
 
 ?>
