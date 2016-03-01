@@ -4,19 +4,26 @@
 
 	class CourseTest extends PHPUnit_Framework_TestCase
 	{
+		// protected function tearDown()
+	    // {
+        //     Student::deleteAll();
+        //     Course::deleteAll();
+	    // }
 
-		// function test_makeTitleCase_oneWord()
-		// {
-		// //Arrange
-		// $test_TitleCaseGenerator = new TitleCaseGenerator;
-		// $input = 'beowulf';
-		//
-		// //Act
-		// $result = $test_TitleCaseGenerator->makeTitleCase($input);
-		//
-		// //Assert
-		// $this->assertEquals('Beowulf', $result);
-		// }
+        function testGetName()
+        {
+            //Arrange
+            $name = "HIST";
+			$number = 100;
+            $test_course = new Course($id = null, $name, $number);
+
+            //Act
+            $result = $test_course->getName();
+
+            //Assert
+            $this->assertEquals($name, $result);
+
+        }
 	}
 
 ?>
