@@ -165,13 +165,45 @@
 
 			//Assert
 			$this->assertEquals('ENG', $test_course->getName());
+		}
 
+		function testFind()
+		{
+			//Arrange
+			$id = null;
+			$name = "HIST";
+			$course_num = 100;
+			$test_course = new Course($id, $name, $course_num);
+			$test_course->save();
+
+			//Act
+			$result = Course::find($test_course->getId());
+
+			//Arrange
+			$this->assertEquals($test_course, $result);
 		}
 
 
 		/////workspace
-
-
+		// function testFind()
+        // {
+        //     //Arrange
+        //     $name = "Wash the dog";
+        //     $id = 1;
+        //     $test_category = new Category($name, $id);
+        //     $test_category->save();
+		//
+        //     $name2 = "Home stuff";
+        //     $id2 = 2;
+        //     $test_category2 = new Category($name2, $id2);
+        //     $test_category2->save();
+		//
+        //     //Act
+        //     $result = Category::find($test_category->getId());
+		//
+        //     //Assert
+        //     $this->assertEquals($test_category, $result);
+        // }
 
 	}
 

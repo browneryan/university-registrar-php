@@ -68,20 +68,29 @@
 			$this->setName($new_name);
 		}
 
-		//workspace
-		// static function getAll()
-        // {
-        //     $returned_tasks = $GLOBALS['DB']->query("SELECT * FROM tasks;");
-        //     $tasks = array();
-        //     foreach($returned_tasks as $task) {
-        //         $description = $task['description'];
-        //         $complete = $task['complete'];
-        //         $id = $task['id'];
-        //         $new_task = new Task($description, $id, $complete);
-        //         array_push($tasks, $new_task);
-        //     }
-        //     return $tasks;
-        // }
+		static function find($search_id)
+		{
+			$found_course = null;
+			$all_courses = Course::getAll();
+			foreach($all_courses as $course) {
+				if ($search_id == $course->getId()){
+					$found_course = $course;
+				}
+			}	return $found_course;
+		}
 
+		//workspace
+		// static function find($search_id)
+        // {
+        //     $found_category = null;
+        //     $categories = Category::getAll();
+        //     foreach($categories as $category) {
+        //         $category_id = $category->getId();
+        //         if ($category_id == $search_id) {
+        //           $found_category = $category;
+        //         }
+        //     }
+        //     return $found_category;
+        // }
 	}
  ?>
