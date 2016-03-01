@@ -139,6 +139,28 @@
 			//Arrange
 			$this->assertEquals([], $result);
 		}
+
+		function testGetAll()
+		{
+			//Arrange
+			$name = "Goofus";
+			$enroll_date = '2000-12-30';
+			$id = null;
+			$test_student = new Student($id, $name, $enroll_date);
+			$test_student->save();
+
+			$name2 = "Jabroni";
+			$enroll_date2 = '2012-10-18';
+			$id2 = null;
+			$test_student2 = new Student($id2, $name2, $enroll_date2);
+			$test_student2->save();
+
+			//Act
+			$result = Student::getAll();
+
+			//Arrange
+			$this->assertEquals([$test_student, $test_student2], $result);
+		}
 	}
 
 
