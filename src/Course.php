@@ -79,6 +79,13 @@
 			}	return $found_course;
 		}
 
+		function delete()
+		{//delete one course
+			//will update later to delete all students in that course
+			$GLOBALS['DB']->exec("DELETE FROM course WHERE id = {$this->getId()};");
+			$GLOBALS['DB']->exec("DELETE FROM course_student WHERE course_id = {$this->getId()};");
+		}
+
 		//workspace
 
 	}

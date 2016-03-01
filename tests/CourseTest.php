@@ -183,27 +183,33 @@
 			$this->assertEquals($test_course, $result);
 		}
 
+		function testDelete()
+		{//delete one course
+
+			//Arrange
+			$id = null;
+			$name = "HIST";
+			$course_num = 100;
+			$test_course = new Course($id, $name, $course_num);
+			$test_course->save();
+
+			$name2 = "BIO";
+			$course_num2 = 452;
+			$test_course2 = new Course($id, $name2, $course_num2);
+			$test_course2->save();
+
+			//Act
+			$test_course->delete();
+			$result = Course::getAll();
+
+			//Assert
+			$this->assertEquals([$test_course2], $result);
+
+		}
+
 
 		/////workspace
-		// function testFind()
-        // {
-        //     //Arrange
-        //     $name = "Wash the dog";
-        //     $id = 1;
-        //     $test_category = new Category($name, $id);
-        //     $test_category->save();
-		//
-        //     $name2 = "Home stuff";
-        //     $id2 = 2;
-        //     $test_category2 = new Category($name2, $id2);
-        //     $test_category2->save();
-		//
-        //     //Act
-        //     $result = Category::find($test_category->getId());
-		//
-        //     //Assert
-        //     $this->assertEquals($test_category, $result);
-        // }
+
 
 	}
 
