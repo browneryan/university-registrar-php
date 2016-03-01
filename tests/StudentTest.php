@@ -251,9 +251,7 @@
 
 			//Assert
 			$this->assertEquals($test_student->getCourse(), [$test_course, $test_course2]);
-
 		}
-
 
 	}
 
