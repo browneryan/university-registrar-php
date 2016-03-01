@@ -39,6 +39,21 @@
 			$this->assertEquals('BIO', $result);
 		}
 
+		function testGetId()
+		{
+			//Arrange
+			$id = 1;
+			$name = "HIST";
+			$number = 100;
+			$test_course = new Course($id, $name, $number);
+
+			//Act
+			$result = $test_course->getId();
+
+			//Assert
+			$this->assertEquals(1, $result);
+		}
+
 	}
 
 ?>
