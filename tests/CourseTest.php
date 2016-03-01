@@ -67,7 +67,20 @@
 
 			//Assert
 			$this->assertEquals('111', $result);
+		}
 
+		function testGetNumber()
+		{
+			//Arrange
+			$name = "HIST";
+			$number = 100;
+			$test_course = new Course($id = null, $name, $number);
+
+			//Act
+			$result = $test_course->getNumber();
+
+			//Assert
+			$this->assertEquals(100, $result);
 		}
 
 	}
