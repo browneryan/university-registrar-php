@@ -79,5 +79,11 @@
 			$GLOBALS['DB']->exec("DELETE FROM student WHERE id = {$this->getId()};");
 			$GLOBALS['DB']->exec("DELETE FROM course_student WHERE student_id = {$this->getId()};");
 		}
+
+		function updateName($new_name)
+		{
+			$GLOBALS['DB']->exec("UPDATE student WHERE id = {$this->getId()}:");
+			$this->setName($new_name);
+		}
 	}
  ?>
