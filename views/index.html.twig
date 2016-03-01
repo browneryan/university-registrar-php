@@ -30,7 +30,7 @@
                 {% if courses is not empty %}
                     <ul>
                         {% for course in courses %}
-                            <li>{{ course.getName }}</li>
+                            <li>{{ course.getName }} {{ course.getCourseNum }}</li>
                         {% endfor %}
                     </ul>
                 {% else %}
@@ -42,7 +42,7 @@
                 {% if students is not empty %}
                     <ul>
                         {% for student in students %}
-                            <li>{{student.getName}}</li>
+                            <li>{{student.getName}} {{ student.getEnrollDate }}</li>
                         {% endfor %}
                     </ul>
                 {% else %}
