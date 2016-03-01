@@ -72,7 +72,12 @@
 				}
 			}
 			return $found_student;
+		}
 
+		function delete()
+		{//delete one student
+			$GLOBALS['DB']->exec("DELETE FROM student WHERE id = {$this->getId()};");
+			$GLOBALS['DB']->exec("DELETE FROM course_student WHERE student_id = {$this->getId()};");
 		}
 	}
  ?>
