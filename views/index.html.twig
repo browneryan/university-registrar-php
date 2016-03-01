@@ -6,6 +6,23 @@
   <body>
     <div class="container">
         {% include '/includes/header.html.twig' %}
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Add Course</h2><hr>
+
+                {% include '/includes/add_course.html.twig' %}
+
+            </div><!--col-md-6-->
+            <div class="col-md-6">
+                <h2>Add Student</h2><hr>
+
+                {% include '/includes/add_student.html.twig' %}
+
+            </div><!--col-md-6-->
+        </div>
+        <hr>
+        <br>
+        <br>
 
         <div class="row">
             <div class="col-md-6">
@@ -19,8 +36,7 @@
                 {% else %}
                     <p>No Courses Available</p>
                 {% endif %}
-
-            </div>
+            </div><!--col-md-6-->
             <div class="col-md-6">
                 <h2>Students</h2><hr>
                 {% if students is not empty %}
@@ -32,8 +48,8 @@
                 {% else %}
                     <p>No students enrolled</p>
                 {% endif %}
-            </div>
-        </div>
+            </div><!--col-md-6-->
+        </div><!--row-->
     </div>
   </body>
 </html>

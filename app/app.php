@@ -20,9 +20,33 @@
 	$app->register(new Silex\Provider\TwigServiceProvider(), array('twig.path' => __DIR__.'/../views'));
 
 	$app->get("/", function() use ($app) {
+		//home page
         return $app['twig']->render('index.html.twig', array(
-			'courses' => Course::getAll(), 'students' => Student::getAll()));
+			'courses' => Course::getAll(),
+			'students' => Student::getAll()
+		));
     });
+
+	$app->post("/course", function() use ($app){
+		//adds a specific course
+		$name = $_POST['name'];
+		$course_num = $_POST['number'];
+		$new_course = new Course($id = null, $name, $course_num);
+		$new_course->save();
+		return $app['twig']->render('index.html.twig', array(
+			'courses' => Course::getAll(),
+			'students' => Student::getAll()
+	  ));
+	});
+
+	$app->delete('/delete_all_course', function() use ($app) {
+		//deletes all courses
+		Course::deleteAll();
+		return $app['twig']->render('index.html.twig', array(
+			'courses' => Course::getAll(),
+			'students' => Student::getAll()
+	  ));
+	});
 
 	return $app;
 

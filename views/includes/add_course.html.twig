@@ -1,0 +1,13 @@
+<form class="form-group" action='/course' method='post'>
+    <label for='name'>Course name:</label>
+    <input  class="form-control"id='name' name='name' type='text'><br>
+
+    <label for='number'>Course number:</label>
+    <input class="form-control" id='number' name='number' type='text'><br>
+
+    <button class="btn btn-lg btn-primary"type='submit'>Add Course</button>
+</form>
+<form class="form-group" action='/delete_all_course' method='post'>
+    <input value="delete" type='hidden' name='_method'>
+    <button class="btn btn-lg btn-danger" type="submit">Delete all courses</button>
+</form>
