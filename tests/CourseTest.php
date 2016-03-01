@@ -54,6 +54,22 @@
 			$this->assertEquals(1, $result);
 		}
 
+		function testSetNumber()
+		{
+			//Arrange
+			$name = "HIST";
+			$number = 100;
+			$test_course = new Course($id = null, $name, $number);
+
+			//Act
+			$test_course->setNumber('111');
+			$result = $test_course->getNumber();
+
+			//Assert
+			$this->assertEquals('111', $result);
+
+		}
+
 	}
 
 ?>
