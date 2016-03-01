@@ -200,8 +200,61 @@
 
 			//Assert
 			$this->assertEquals('Goofball', $test_student->getName());
+		}
+
+		function testaddCourse()
+		{
+			//Arrange
+			$id = 1;
+			$course_name = "HIST";
+			$course_num = 100;
+			$test_course = new Course($id, $course_name, $course_num);
+			$test_course->save();
+
+			$name = "Goofus";
+			$enroll_date = '2000-12-30';
+			$id2 = 2;
+			$test_student = new Student($id2, $name, $enroll_date);
+			$test_student->save();
+
+			//Act
+			$test_student->addCourse($test_course);
+
+			//Assert
+			$this->assertEquals($test_student->getCourse(), [$test_course]);
+		}
+
+		function testGetCourse()
+		{
+			//Arrange
+			$id = 1;
+			$course_name = "HIST";
+			$course_num = 100;
+			$test_course = new Course($id, $course_name, $course_num);
+			$test_course->save();
+
+			$id2 = 2;
+			$course_name2 = "ENG";
+			$course_num2 = 110;
+			$test_course2 = new Course($id2, $course_name2, $course_num2);
+			$test_course2->save();
+
+			$name = "Goofus";
+			$enroll_date = '2000-12-30';
+			$id3 = 1;
+			$test_student = new Student($id3, $name, $enroll_date);
+			$test_student->save();
+
+			//Act
+			$test_student->addCourse($test_course);
+			$test_student->addCourse($test_course2);
+
+			//Assert
+			$this->assertEquals($test_student->getCourse(), [$test_course, $test_course2]);
 
 		}
+
+
 	}
 
 
