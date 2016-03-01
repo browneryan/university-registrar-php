@@ -3,13 +3,13 @@
 	{
 		private $id;
 		private $name;
-		private $number;
+		private $course_num;
 
-		function __construct($id = null, $name, $number)
+		function __construct($id = null, $name, $course_num)
         {
 			$this->id = $id;
             $this->name = $name;
-            $this->number = $number;
+            $this->course_num = $course_num;
         }
 
 		function setName($new_name)
@@ -27,16 +27,61 @@
             return $this->id;
         }
 
-		function setNumber($new_number)
+		function setCourseNum($new_course_num)
         {
-            $this->number = (string) $new_number;
+            $this->course_num = (string) $new_course_num;
         }
 
-        function getNumber()
+        function getCourseNum()
         {
-            return $this->number;
+            return $this->course_num;
         }
 
+		function save()
+		{
+			$GLOBALS['DB']->exec("INSERT INTO course (name, course_num) VALUES ('{$this->getName()}', '{$this->getCourseNum()}');");
+			$this->id = $GLOBALS['DB']->lastInsertId();
+		}
+
+		static function getAll()
+		{
+			$returned_courses = array();
+			$all_courses = $GLOBALS['DB']->query("SELECT * FROM course;");
+			foreach ($all_courses as $course) {
+				$id = $course['id'];
+				$name = $course['name'];
+				$course_num = $course['course_num'];
+				$new_course = new Course($id, $name, $course_num);
+				array_push($returned_courses, $new_course);
+			}//make sure you are pushing the object you created,'new_course' and not the object you are pulling from your database, 'course'
+			return $returned_courses;
+		}
+
+		static function deleteAll()
+		{
+			$GLOBALS['DB']->exec("DELETE FROM course;");
+		}
+
+		function updateName($new_name)
+		{
+			$GLOBALS['DB']->exec("UPDATE course SET name = '{$new_name}' WHERE id = {$this->getId()};");
+			$this->setName($new_name);
+		}
+
+		//workspace
+		// static function getAll()
+        // {
+        //     $returned_tasks = $GLOBALS['DB']->query("SELECT * FROM tasks;");
+        //     $tasks = array();
+        //     foreach($returned_tasks as $task) {
+        //         $description = $task['description'];
+        //         $complete = $task['complete'];
+        //         $id = $task['id'];
+        //         $new_task = new Task($description, $id, $complete);
+        //         array_push($tasks, $new_task);
+        //     }
+        //     return $tasks;
+        // }
 
 	}
  ?>
