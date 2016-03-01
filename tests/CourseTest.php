@@ -5,18 +5,20 @@
     * @backupStaticAttributes disabled
     */
 
+	require_once 'src/Student.php';
+	require_once 'src/Course.php';
+
     $server = 'mysql:host=localhost;dbname=university_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
 
-	require_once 'src/Course.php';
-
 	class CourseTest extends PHPUnit_Framework_TestCase
 	{
 		protected function tearDown()
 	    {
-            Course::deleteAll();
+			Student::deleteAll();
+			Course::deleteAll();
 	    }
 
         function testGetName()

@@ -36,5 +36,30 @@
         {
             return $this->enroll_date;
         }
+
+		function save()
+		{
+			$GLOBALS['DB']->exec("INSERT INTO student (name, enroll_date) VALUES ('{$this->getName()}', '{$this->getEnrollDate()}');");
+			$this->id = $GLOBALS['DB']->lastInsertId();
+		}
+
+		static function getAll()
+		{
+			$returned_students = array();
+			$all_students = $GLOBALS['DB']->query("SELECT * FROM student;");
+			foreach ($all_students as $student) {
+				$id = $student['id'];
+				$name = $student['name'];
+				$enroll_date = $student['enroll_date'];
+				$new_student = new Student($id, $name, $enroll_date);
+				array_push($returned_students, $new_student);
+			}//make sure you are pushing the object you created,'new_student' and not the object you are pulling from your database, 'student'
+			return $returned_students;
+		}
+
+		static function deleteAll()
+		{
+			$GLOBALS['DB']->exec("DELETE FROM student;");
+		}
 	}
  ?>
