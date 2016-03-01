@@ -9,7 +9,7 @@
 
 	$app['debug'] = true;
 
-    $server = 'mysql:host=localhost;dbname=to_do';
+    $server = 'mysql:host=localhost;dbname=university';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -19,7 +19,10 @@
 
 	$app->register(new Silex\Provider\TwigServiceProvider(), array('twig.path' => __DIR__.'/../views'));
 
-	$app->get('/', function(){return 'Hello, World!';});
+	$app->get("/", function() use ($app) {
+        return $app['twig']->render('index.html.twig', array(
+			'courses' => Course::getAll(), 'students' => Student::getAll()));
+    });
 
 	return $app;
 

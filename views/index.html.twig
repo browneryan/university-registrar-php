@@ -5,7 +5,35 @@
   </head>
   <body>
     <div class="container">
-    {% include '/includes/form.html.twig' %}
+        {% include '/includes/header.html.twig' %}
+
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Courses</h2><hr>
+                {% if courses is not empty %}
+                    <ul>
+                        {% for course in courses %}
+                            <li>{{ course.getName }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No Courses Available</p>
+                {% endif %}
+
+            </div>
+            <div class="col-md-6">
+                <h2>Students</h2><hr>
+                {% if students is not empty %}
+                    <ul>
+                        {% for student in students %}
+                            <li>{{student.getName}}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No students enrolled</p>
+                {% endif %}
+            </div>
+        </div>
     </div>
   </body>
 </html>
