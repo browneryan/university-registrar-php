@@ -31,6 +31,8 @@
                     <ul>
                         {% for course in courses %}
                             <li>{{ course.getName }} {{ course.getCourseNum }}</li>
+                            <br><a href="/course/{{ course.getId }}">View Course</a>
+                            <hr>
                         {% endfor %}
                     </ul>
                 {% else %}
@@ -39,15 +41,7 @@
             </div><!--col-md-6-->
             <div class="col-md-6">
                 <h2>Students</h2><hr>
-                {% if students is not empty %}
-                    <ul>
-                        {% for student in students %}
-                            <li>{{student.getName}} {{ student.getEnrollDate }}</li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    <p>No students enrolled</p>
-                {% endif %}
+                    {% include '/includes/all_students.html.twig' %}
             </div><!--col-md-6-->
         </div><!--row-->
     </div>

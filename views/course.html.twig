@@ -1,0 +1,28 @@
+<html>
+  <head>
+    {% include '/includes/head.html.twig' %}
+  </head>
+  <body>
+    <div class="container">
+        {% include '/includes/header.html.twig' %}
+
+        <h1> {{ course.getName }} {{ course.getCourseNum }}</h1>
+        <hr>
+        <h2>Students Enrolled</h2>
+            {% include '/includes/all_students.html.twig' %}
+
+        <form action='/add_student' method='post'>
+            <input id="course_id" name="course_id" type="hidden" value="{{ course.getId }}">
+            <label for="task_id">Select a student</label>
+
+            <select id='student_id' name='student_id' type='text'>
+                {% for student in all_students %}
+                    <option value="{{ student.getId }}"> {{ student.getName }} </option>
+                {% endfor %}
+            </select>
+
+            <button class="btn btn-lg btn-primary" type="submit">Add Student</button>
+        </form>
+
+    </body>
+</html>

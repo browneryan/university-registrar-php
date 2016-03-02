@@ -28,6 +28,16 @@
 		));
     });
 
+	$app->get('/course/{id}', function($id) use ($app) {
+		//inspect a single course
+		$course = Course::find($id);
+		return $app['twig']->render('course.html.twig', array(
+			'course' => $course,
+			'students' => $course->getStudents(),
+			'all_students' => Student::getAll()
+		));
+	});
+
 	$app->post("/course", function() use ($app){
 		//adds a specific course
 		$name = $_POST['name'];
@@ -62,6 +72,27 @@
 			'students' => Student::getAll()
 		));
 	});
+
+	$app->post('/add_student', function() use ($app) {
+		$course = Course::find($_POST['course_id']);
+		$student = Student::find($_POST['student_id']);
+		$course->addStudent($student);
+		return $app['twig']->render('course.html.twig', array(
+			'course' => $course,
+			'students' => $course->getStudents(),
+			'all_students' => Student::getAll()
+		));
+	});
+
+	$app->post("/add_tasks", function() use ($app) {
+	$category = Category::find($_POST['category_id']);
+	$task = Task::find($_POST['task_id']);
+	$category->addTask($task);
+	return $app['twig']->render('category.html.twig', array('category' => $category,
+	'categories' => Category::getAll(),
+	'tasks' => $category->getTasks(),
+	'all_tasks' => Task::getAll()));
+});
 
 	$app->delete('/delete_all_student', function() use ($app) {
 		//deletes all courses

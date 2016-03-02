@@ -1,0 +1,9 @@
+{% if students is not empty %}
+    <ul>
+        {% for student in students %}
+            <li>{{student.getName}} {{ student.getEnrollDate }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No students enrolled</p>
+{% endif %}
